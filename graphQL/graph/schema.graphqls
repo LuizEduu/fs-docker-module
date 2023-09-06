@@ -1,0 +1,37 @@
+type Category {
+  id: ID!
+  name: String!
+  description: String
+  courses: [Course!]!
+}
+
+type Course {
+  id: ID!
+  name: String!
+  description: String
+  category: Category!
+}
+
+#input define os dados necessários para inserir uma nova categoria
+input NewCategory {
+  name: String!
+  description: String
+}
+
+input NewCourse {
+  name: String!
+  description: String
+  categoryId: ID!
+}
+
+#tipos de consulta que eu preciso
+type Query {
+  categories: [Category!]!
+  courses: [Course!]!
+}
+
+#tipos de insert/update/delete ou qualquer outra entrada de dados que preciso
+type Mutation {
+  addCategory(category: NewCategory!): Category!
+  addCourse(course: NewCourse!): Course!
+}
